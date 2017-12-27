@@ -6,6 +6,7 @@ android {
         applicationId "com.yejy.wealthcatch"
         minSdkVersion 19
         versionCode 1
+
         versionName "1.10"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
