@@ -1,6 +1,7 @@
 package com.yejy.wealthcatch.ui.fragment.adapter;
 
 import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -21,10 +22,8 @@ public class OpenResultAdapter extends RecyclerView.Adapter<OpenResultAdapter.Ho
 
     @Override
     public Holder onCreateViewHolder(ViewGroup parent, int viewType) {
-        ImageView imageView = new ImageView(parent.getContext());
-        imageView.getLayoutParams().height = ViewGroup.LayoutParams.WRAP_CONTENT;
-        imageView.getLayoutParams().width = ViewGroup.LayoutParams.WRAP_CONTENT;
-        Holder holder = new Holder(imageView);
+        View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item_open_result, parent, false);
+        Holder holder = new Holder(itemView);
         return holder;
     }
 
