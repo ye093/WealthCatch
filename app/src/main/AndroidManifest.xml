@@ -72,7 +72,7 @@
             <intent-filter>
                 <action android:name="cn.jpush.android.ui.PushActivity" />
                 <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="您应用的包名" />
+                <category android:name="com.yejy.wealthcatch" />
             </intent-filter>
         </activity>
         <!-- Required  SDK核心功能-->
@@ -105,7 +105,7 @@
             android:exported="true">
             <intent-filter>
                 <action android:name="cn.jpush.android.intent.DaemonService" />
-                <category android:name="您应用的包名" />
+                <category android:name="com.yejy.wealthcatch" />
             </intent-filter>
 
         </service>
@@ -117,7 +117,7 @@
             android:exported="false">
             <intent-filter android:priority="1000">
                 <action android:name="cn.jpush.android.intent.NOTIFICATION_RECEIVED_PROXY" />   <!--Required  显示通知栏 -->
-                <category android:name="您应用的包名" />
+                <category android:name="com.yejy.wealthcatch" />
             </intent-filter>
             <intent-filter>
                 <action android:name="android.intent.action.USER_PRESENT" />
@@ -148,7 +148,7 @@
                 <action android:name="cn.jpush.android.intent.NOTIFICATION_OPENED" /> <!--Required  用户打开自定义通知栏的intent-->
                 <action android:name="cn.jpush.android.intent.ACTION_RICHPUSH_CALLBACK" /> <!--Optional 用户接受Rich Push Javascript 回调函数的intent-->
                 <action android:name="cn.jpush.android.intent.CONNECTION" /><!-- 接收网络变化 连接/断开 since 1.6.3 -->
-                <category android:name="您应用的包名" />
+                <category android:name="com.yejy.wealthcatch" />
             </intent-filter>
         </receiver>
 
