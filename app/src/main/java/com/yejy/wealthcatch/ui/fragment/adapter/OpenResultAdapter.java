@@ -22,6 +22,8 @@ public class OpenResultAdapter extends RecyclerView.Adapter<OpenResultAdapter.Ho
     @Override
     public Holder onCreateViewHolder(ViewGroup parent, int viewType) {
         ImageView imageView = new ImageView(parent.getContext());
+        imageView.getLayoutParams().height = ViewGroup.LayoutParams.WRAP_CONTENT;
+        imageView.getLayoutParams().width = ViewGroup.LayoutParams.WRAP_CONTENT;
         Holder holder = new Holder(imageView);
         return holder;
     }
