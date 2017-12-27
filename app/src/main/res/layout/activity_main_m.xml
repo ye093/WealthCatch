@@ -17,5 +17,5 @@ android:background="?attr/app_primary_color">
     android:textSize="12sp"
     app:qmui_tab_icon_position="top"
     android:layout_width="match_parent"
-    android:layout_height="@dimen/home_tab_height"/>
+    android:layout_height="65dp"/>
 </FrameLayout>

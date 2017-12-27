@@ -42,18 +42,18 @@ public class MainFragment extends BaseFragment {
         QMUITabSegment.Tab component = new QMUITabSegment.Tab(
                 ContextCompat.getDrawable(getActivity(), R.drawable.icon_new_msg),
                 ContextCompat.getDrawable(getActivity(), R.drawable.icon_new_msg_selected),
-                getResources().getText(R.string.new_message), false
+                getResources().getText(R.string.new_message), false, true
         );
 
         QMUITabSegment.Tab util = new QMUITabSegment.Tab(
                 ContextCompat.getDrawable(getActivity(), R.drawable.icon_gonggao),
                 ContextCompat.getDrawable(getActivity(), R.drawable.icon_gonggao_selected),
-                getResources().getText(R.string.open_indicate), false
+                getResources().getText(R.string.open_indicate), false, true
         );
         QMUITabSegment.Tab lab = new QMUITabSegment.Tab(
                 ContextCompat.getDrawable(getActivity(), R.drawable.icon_manager),
                 ContextCompat.getDrawable(getActivity(), R.drawable.icon_manager_selected),
-                getResources().getText(R.string.mine_ticket), false
+                getResources().getText(R.string.mine_ticket), false, true
         );
         mTabSegment.addTab(component)
                 .addTab(util)

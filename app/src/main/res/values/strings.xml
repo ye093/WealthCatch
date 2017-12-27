@@ -122,14 +122,6 @@
     <string name="spanUtils_custom_type_face_title">自定义部分文字的字体</string>
     <string name="spanUtils_rmb">¥</string><!-- ¥相当于&#xA5 -->
 
-    <!-- 其他界面 -->
-
-    <!-- 关于界面 -->
-    <string name="about_title">关于</string>
-    <string name="about_item_homepage">访问官网</string>
-    <string name="about_item_github">GitHub</string>
-    <string name="about_copyright">© %1$s QMUI Team All rights reserved.</string>
-
     <!--首页-->
     <string name="new_message">彩票资讯</string>
     <string name="open_indicate">开奖公告</string>

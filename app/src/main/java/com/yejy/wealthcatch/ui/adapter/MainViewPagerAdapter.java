@@ -8,6 +8,11 @@ import com.yejy.wealthcatch.ui.base.BaseFragmentPagerAdapter;
 import com.yejy.wealthcatch.ui.fragment.HomeFragment;
 
 public class MainViewPagerAdapter extends BaseFragmentPagerAdapter {
+    private static final String[] TITLES = new String[] {
+            "彩票资讯",
+            "开奖公告",
+            "我的彩票"
+    };
 
     public MainViewPagerAdapter(FragmentManager fm) {
         super(fm);
@@ -15,7 +20,7 @@ public class MainViewPagerAdapter extends BaseFragmentPagerAdapter {
 
     @Override
     public Fragment getItem(int position) {
-        return new HomeFragment();
+        return HomeFragment.newInstance(TITLES[position]);
     }
 
     @Override

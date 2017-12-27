@@ -3,6 +3,22 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
+    <RelativeLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:background="?attr/qmui_config_color_blue"
+        android:layout_height="?attr/qmui_topbar_height">
+
+        <TextView
+            android:id="@+id/topTitle"
+            android:gravity="center"
+            android:layout_centerInParent="true"
+            android:textColor="?attr/qmui_topbar_title_color"
+            android:textSize="16sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+    </RelativeLayout>
 
     <TextView
         android:text="你好啊"
