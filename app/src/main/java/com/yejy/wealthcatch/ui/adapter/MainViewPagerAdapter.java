@@ -5,6 +5,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 
 import com.yejy.wealthcatch.ui.base.BaseFragmentPagerAdapter;
+import com.yejy.wealthcatch.ui.fragment.AboutUsFragment;
 import com.yejy.wealthcatch.ui.fragment.HomeFragment;
 import com.yejy.wealthcatch.ui.fragment.OpenResultFragment;
 
@@ -24,8 +25,10 @@ public class MainViewPagerAdapter extends BaseFragmentPagerAdapter {
         Fragment fragment;
         if (position == 1) {
             fragment = OpenResultFragment.newInstance(TITLES[position]);
-        } else {
+        } else if(position == 0) {
             fragment = HomeFragment.newInstance(TITLES[position]);
+        } else {
+            fragment = AboutUsFragment.newInstance(TITLES[position]);
         }
         return fragment;
     }
