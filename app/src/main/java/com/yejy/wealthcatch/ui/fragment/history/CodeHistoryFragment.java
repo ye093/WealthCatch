@@ -1,4 +1,4 @@
-package com.yejy.wealthcatch.ui.fragment;
+package com.yejy.wealthcatch.ui.fragment.history;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -14,8 +14,8 @@ import com.yejy.wealthcatch.R;
 import com.yejy.wealthcatch.net.MyHttp;
 import com.yejy.wealthcatch.ui.base.BaseFragment;
 import com.yejy.wealthcatch.ui.decoration.GridDividerItemDecoration;
-import com.yejy.wealthcatch.ui.entity.OpenCode;
-import com.yejy.wealthcatch.ui.fragment.adapter.OpenResultAdapter;
+import com.yejy.wealthcatch.ui.entity.HistoryOpenCode;
+import com.yejy.wealthcatch.ui.fragment.adapter.HistoryOpenCodeAdapter;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -23,22 +23,21 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
+public class CodeHistoryFragment  extends BaseFragment {
 
-public class OpenResultFragment  extends BaseFragment {
     TextView topTitle;
-    private static final String TITLE_KEY = "title_key";
     private RecyclerView listView;
-    private OpenResultAdapter adapter;
+    private HistoryOpenCodeAdapter adapter;
+    private String queryUrl;
 
-    public static OpenResultFragment newInstance(String title) {
-        OpenResultFragment fragment = new OpenResultFragment();
+    private static final String QUERY_KEY = "query_key";
+    public static CodeHistoryFragment newInstance(String queryUrl) {
+        CodeHistoryFragment fragment = new CodeHistoryFragment();
         Bundle args = new Bundle();
-        args.putString(TITLE_KEY, title);
+        args.putString(QUERY_KEY, queryUrl);
         fragment.setArguments(args);
         return fragment;
     }
-    //http://m.159cai.com/cpdata/game/80/c.json
-
 
     @Override
     protected View onCreateView() {
@@ -51,40 +50,35 @@ public class OpenResultFragment  extends BaseFragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        String title = getArguments().getString(TITLE_KEY, "");
-        topTitle.setText(title);
-        adapter = new OpenResultAdapter();
+        queryUrl = getArguments().getString(QUERY_KEY);
+        topTitle.setText("历史开奖");
+        adapter = new HistoryOpenCodeAdapter();
         listView.setAdapter(adapter);
         listView.setLayoutManager(new LinearLayoutManager(view.getContext(), LinearLayoutManager.VERTICAL, false));
         listView.addItemDecoration(new GridDividerItemDecoration(getActivity(), 1));
+        if (queryUrl == null) return;
         MyHttp myHttp = new MyHttp();
-        myHttp.doGet("http://m.159cai.com/cpdata/game/aopencode.json", new MyHttp.MyHttpCallback() {
+        myHttp.doGet(queryUrl, new MyHttp.MyHttpCallback() {
             @Override
             public void result(String response) {
                 if (TextUtils.isEmpty(response)) return;
                 try {
                     JSONObject jsonObject = new JSONObject(response);
-                    JSONObject jsonRows = jsonObject.getJSONObject("rows");
-                    JSONArray rowArray = jsonRows.getJSONArray("row");
-                    final ArrayList<OpenCode> openCodes = new ArrayList<>();
+                    JSONObject jsonPeriod = jsonObject.getJSONObject("period");
+                    JSONArray rowArray = jsonPeriod.getJSONArray("row");
+                    final ArrayList<HistoryOpenCode> openCodes = new ArrayList<>();
                     for (int i = 0; i < rowArray.length(); i++) {
-                        JSONObject jsonRow = rowArray.getJSONObject(i);
-                        String auditdate = jsonRow.optString("auditdate");
-                        String moneys = jsonRow.optString("moneys");
-                        String nums = jsonRow.optString("nums");
-                        String sales = jsonRow.optString("sales");
-                        String at = jsonRow.optString("at");
-                        String gname = jsonRow.optString("gname");
-                        if ("胜负彩".equals(gname)) continue;
-                        String gid = jsonRow.optString("gid");
-                        String codes = jsonRow.optString("codes");
-                        String pid = jsonRow.optString("pid");
-                        String et = jsonRow.optString("et");
-                        String pools = jsonRow.optString("pools");
-                        String bt = jsonRow.optString("bt");
-                        OpenCode openCode = new OpenCode(auditdate, moneys, nums, sales, at, gname,
-                                gid, codes, pid, et, pools, bt);
-                        openCodes.add(openCode);
+                        JSONObject rowObj = rowArray.getJSONObject(i);
+                        String fet = rowObj.optString("fet");
+                        String flag = rowObj.optString("flag");
+                        String pid = rowObj.optString("pid");
+                        String st = rowObj.optString("st");
+                        String et = rowObj.optString("et");
+                        String opencode = rowObj.optString("opencode");
+                        if ("1".equals(flag)) continue;
+                        HistoryOpenCode historyOpenCode = new HistoryOpenCode(fet, flag, pid, st,
+                                et, opencode);
+                        openCodes.add(historyOpenCode);
                     }
                     getActivity().runOnUiThread(new Runnable() {
                         @Override

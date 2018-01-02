@@ -1,6 +1,5 @@
 package com.yejy.wealthcatch.ui.fragment.adapter;
 
-import android.content.Intent;
 import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -12,56 +11,47 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.yejy.wealthcatch.R;
-import com.yejy.wealthcatch.ui.activity.MainActivity;
-import com.yejy.wealthcatch.ui.entity.OpenCode;
+import com.yejy.wealthcatch.ui.entity.HistoryOpenCode;
 
 import java.util.ArrayList;
 
-public class OpenResultAdapter extends RecyclerView.Adapter<OpenResultAdapter.Holder> {
-    private ArrayList<OpenCode> openCodes = new ArrayList<>();
+/**
+ * HistoryOpenCodeAdapter
+ */
 
-    public void setDataSet(ArrayList<OpenCode> openCodes) {
+public class HistoryOpenCodeAdapter extends RecyclerView.Adapter<HistoryOpenCodeAdapter.Holder> {
+    private ArrayList<HistoryOpenCode> openCodes = new ArrayList<>();
+
+    public void setDataSet(ArrayList<HistoryOpenCode> openCodes) {
         if (openCodes == null) return;
         this.openCodes.clear();
         this.openCodes.addAll(openCodes);
         notifyDataSetChanged();
     }
 
-    public OpenCode getItem(int position) {
+    public HistoryOpenCode getItem(int position) {
         if (position > this.openCodes.size() || position < 0)
             throw new IllegalArgumentException("position is wrong!");
         return this.openCodes.get(position);
     }
 
-    public ArrayList<OpenCode> getDataSet() {
+    public ArrayList<HistoryOpenCode> getDataSet() {
         return this.openCodes;
     }
 
 
     @Override
-    public Holder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public HistoryOpenCodeAdapter.Holder onCreateViewHolder(ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item_open_result, parent, false);
-        return new Holder(itemView);
+        return new HistoryOpenCodeAdapter.Holder(itemView);
     }
 
     @Override
-    public void onBindViewHolder(Holder holder, final int position) {
-        final OpenCode openCode = this.getItem(position);
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(v.getContext(), MainActivity.class);
-                intent.putExtra(MainActivity.NOT_HOME_KEY, true);
-                intent.putExtra(MainActivity.CODE_HISTORY_KEY, true);
-                intent.putExtra(MainActivity.CODE_HISTORY_DATA_KEY,
-                        "http://m.159cai.com/cpdata/game/" + openCode.getGid() +"/c.json");
-                v.getContext().startActivity(intent);
-            }
-        });
-        holder.itemNameTV.setText(openCode.getGname());
-        holder.itemNumTV.setText("第" + openCode.getPid() + "期");
-        holder.dateTimeTV.setText(openCode.getAt().split("\\s")[0]);
-        String codeStr = openCode.getCodes();
+    public void onBindViewHolder(HistoryOpenCodeAdapter.Holder holder, final int position) {
+        HistoryOpenCode openCode = this.getItem(position);
+        holder.itemNameTV.setText("第" + openCode.getPid() + "期");
+        holder.itemNumTV.setText(openCode.getFet().split("\\s")[0]);
+        String codeStr = openCode.getOpencode();
         boolean isCircleNum = codeStr != null && codeStr.contains("*");
         String[] blueCodes = null;
         String[] redCodes = null;
@@ -134,8 +124,10 @@ public class OpenResultAdapter extends RecyclerView.Adapter<OpenResultAdapter.Ho
             itemNameTV = itemView.findViewById(R.id.itemNameTV);
             itemNumTV = itemView.findViewById(R.id.itemNumTV);
             dateTimeTV = itemView.findViewById(R.id.dateTimeTV);
+            dateTimeTV.setVisibility(View.GONE);
             openCodeContainer = itemView.findViewById(R.id.openCodeContainer);
             rightNextIconIV = itemView.findViewById(R.id.rightNextIconIV);
+            rightNextIconIV.setVisibility(View.GONE);
         }
     }
 }
