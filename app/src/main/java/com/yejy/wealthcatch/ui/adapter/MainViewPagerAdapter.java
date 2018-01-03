@@ -13,7 +13,7 @@ public class MainViewPagerAdapter extends BaseFragmentPagerAdapter {
     private static final String[] TITLES = new String[] {
             "彩票资讯",
             "开奖公告",
-            "我的彩票"
+            "彩票新闻"
     };
 
     public MainViewPagerAdapter(FragmentManager fm) {

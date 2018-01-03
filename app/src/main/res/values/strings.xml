@@ -123,9 +123,9 @@
     <string name="spanUtils_rmb">¥</string><!-- ¥相当于&#xA5 -->
 
     <!--首页-->
-    <string name="new_message">彩票资讯</string>
+    <string name="new_message">热点资讯</string>
     <string name="open_indicate">开奖公告</string>
-    <string name="mine_ticket">我的彩票</string>
+    <string name="mine_ticket">彩票新闻</string>
 
     <!--关于我们-->
     <string name="about_us">玩彩票官网【wcp.cc】是一家专业的网上彩票运营平台，实力强悍、大额无忧。主要彩种有重庆天津新疆各地时时彩、福彩、体彩、足彩、体育足彩、广西快三、六合彩、双色球、北京赛车、吉林快三、北京PK拾、三分PK拾、PC蛋蛋、11选5、幸运28、三分彩等。玩彩票平台彩种丰富，玩法多样，实时更新最新彩票投注技巧和下注计划，是您买彩票的最佳选择。</string>
